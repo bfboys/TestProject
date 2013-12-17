@@ -72,11 +72,16 @@ public class MainActivity extends Activity implements OnCheckedChangeListener, O
 		EditText passwordEditText = (EditText)findViewById(R.id.PasswrodEditText);
 		String password = passwordEditText.getText().toString();
 		
-		//////////////////////////////////////////////////
-		applicationClass.semtelLock.setPassword(password);
-		//////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////
+		boolean result = applicationClass.semtelLock.setPassword(password);
+		if(result){
+			Toast.makeText(this, "setPassword", 1000).show();//success
+		}else{
+			Toast.makeText(this, "password is undefined", 1000).show();//fail
+		}
+		///////////////////////////////////////////////////////////////
 		
-		Toast.makeText(this, "setPassword", 1000).show();
+		
 		
 	}
     

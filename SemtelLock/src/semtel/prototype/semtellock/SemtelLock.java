@@ -26,34 +26,51 @@ public class SemtelLock {
 	public SemtelLock(){
 		
 		//to do : key and encodedPassword load in file
+		//encodedPassword = loadPassword();
 		
 		isLock = false;
 		key = "abcdefghijklmnopqrstuvwxyz123456";
-			
-		
+
 	}
 	
-	public void setPassword(String pramPassword){
+	/**
+	 * 
+	 * @param pramPassword
+	 * @return 
+	 */
+	public boolean setPassword(String pramPassword){
 		
+		if(pramPassword==null || pramPassword.equals("")==true ){
+			return false;
+		}
 		
 		try {
 			
 			//apply AES256 
 			this.encodedPassword = AES256Cipher.AES_Encode(pramPassword, key);
 			
+			//stub code
+			storePassword(encodedPassword);
+		
 			//to do : encodedPassword store in file
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		
+		return true;
 	}
 	
+	/**
+	 * 
+	 * @param paramPassword
+	 * @return
+	 */
 	public Boolean isRight(String paramPassword){
 		//TO DO...
 		//AES256 암호화 과정을 거친 param과 비교를 해야한다.
 		Boolean result = false;
-			
-		
+
 		try {
 			//apply AES256 
 			if(encodedPassword.equals(AES256Cipher.AES_Encode(paramPassword, key))){
@@ -66,16 +83,35 @@ public class SemtelLock {
 		return result;
 	}
 	
+	/**
+	 * 
+	 */
 	public void setLock(){
 		isLock = true;
 	}
 	
+	/**
+	 * 
+	 */
 	public void setUnLock(){
 		isLock = false;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public Boolean isLock(){
 		return isLock;
+	}
+	
+	private void storePassword(String paramPassword){
+		//stub code..
+	}
+	
+	private String loadPassword(){
+		
+		return null;
 	}
 
 }
