@@ -30,12 +30,19 @@ public class MainActivity extends Activity implements OnCheckedChangeListener, O
         setContentView(R.layout.activity_main);
         
         applicationClass = (ApplicationClass)getApplicationContext();
+        applicationClass.semtelLock = new SemtelLock(this);
         
         ToggleButton lockToggleButton = (ToggleButton)findViewById(R.id.LockToggleButton);
         Button passwordSaveButton = (Button)findViewById(R.id.PasswordSaveButton);
         
         lockToggleButton.setOnCheckedChangeListener(this);
         passwordSaveButton.setOnClickListener(this);
+        
+        if(applicationClass.semtelLock.isLock()){
+        	lockToggleButton.setChecked(true);
+        }else{
+        	lockToggleButton.setChecked(false);
+        }
         
         
         

@@ -11,7 +11,5 @@ public class ApplicationClass extends Application {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		
-		semtelLock = new SemtelLock();
 	}
 }
